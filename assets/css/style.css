@@ -1,87 +1,204 @@
-body{
-
-    background:#edf2f7;
-
-    font-family:Segoe UI,Arial,sans-serif;
-
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
 }
 
-.header{
+body{
+font-family:Segoe UI,Arial,sans-serif;
+background:#eef2f7;
+overflow:hidden;
+}
 
-    margin-top:20px;
+.app{
+display:flex;
+height:100vh;
+}
+
+.sidebar{
+
+width:250px;
+
+background:#d32f2f;
+
+color:white;
+
+display:flex;
+
+flex-direction:column;
+
+transition:.3s;
 
 }
 
 .logo{
 
-    width:90px;
+padding:22px;
 
-    height:90px;
+font-size:24px;
 
-    background:#d32f2f;
+font-weight:bold;
 
-    color:#fff;
+display:flex;
 
-    border-radius:50%;
+align-items:center;
 
-    display:flex;
+gap:10px;
 
-    justify-content:center;
-
-    align-items:center;
-
-    font-size:40px;
-
-    margin:auto;
-
-    margin-bottom:15px;
+border-bottom:1px solid rgba(255,255,255,.15);
 
 }
 
-.menu-card{
+.logo i{
 
-    display:block;
-
-    background:#fff;
-
-    border-radius:18px;
-
-    padding:35px 20px;
-
-    text-align:center;
-
-    text-decoration:none;
-
-    color:#333;
-
-    box-shadow:0 5px 18px rgba(0,0,0,.08);
-
-    transition:.25s;
+font-size:34px;
 
 }
 
-.menu-card:hover{
+.sidebar nav{
 
-    transform:translateY(-6px);
+display:flex;
 
-    color:#d32f2f;
+flex-direction:column;
 
-}
-
-.menu-card i{
-
-    font-size:45px;
-
-    margin-bottom:15px;
-
-    color:#d32f2f;
+padding:15px;
 
 }
 
-.menu-card h5{
+.menu{
 
-    margin-top:10px;
+color:white;
 
-    font-weight:700;
+text-decoration:none;
+
+padding:14px;
+
+margin-bottom:8px;
+
+border-radius:10px;
+
+display:flex;
+
+align-items:center;
+
+gap:14px;
+
+transition:.25s;
+
+}
+
+.menu:hover{
+
+background:rgba(255,255,255,.15);
+
+}
+
+.menu.active{
+
+background:white;
+
+color:#d32f2f;
+
+font-weight:bold;
+
+}
+
+.main{
+
+flex:1;
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.topbar{
+
+height:70px;
+
+background:white;
+
+display:flex;
+
+align-items:center;
+
+padding:0 20px;
+
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+
+gap:20px;
+
+}
+
+#toggleSidebar{
+
+border:none;
+
+background:none;
+
+font-size:22px;
+
+cursor:pointer;
+
+}
+
+#workspace{
+
+flex:1;
+
+overflow:auto;
+
+padding:35px;
+
+}
+
+.welcome{
+
+background:white;
+
+border-radius:20px;
+
+padding:70px;
+
+text-align:center;
+
+box-shadow:0 5px 20px rgba(0,0,0,.08);
+
+}
+
+.welcome i{
+
+font-size:90px;
+
+color:#d32f2f;
+
+margin-bottom:20px;
+
+}
+
+.welcome h2{
+
+margin-bottom:10px;
+
+}
+
+.sidebar.hide{
+
+margin-left:-250px;
+
+}
+
+@media(max-width:768px){
+
+.sidebar{
+
+position:absolute;
+
+height:100%;
+
+z-index:1000;
+
+}
 
 }
