@@ -4,8 +4,10 @@
 
 import * as pdfjsLib from "../../../libs/pdfjs/pdf.mjs";
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-    "../../../libs/pdfjs/pdf.worker.mjs";
+pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
+    "../../../libs/pdfjs/pdf.worker.mjs",
+    import.meta.url
+).href;
 
 let pdfDoc = null;
 let currentPage = 1;
