@@ -1,58 +1,63 @@
-// ================================
-// pdfTools PDF Reader Engine
-// v1.2.0
-// ================================
+// ======================================
+// pdfTools Reader Module
+// ======================================
 
+import * as pdfjsLib from "../../../libs/pdfjs/pdf.mjs";
 
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+    "../../../libs/pdfjs/pdf.worker.mjs";
 
 let pdfDoc = null;
-
 let currentPage = 1;
-
 let totalPages = 0;
 
-let zoom = 1.0;
+export function initReader() {
 
-const fileInput = document.getElementById("pdfFile");
+    const fileInput = document.getElementById("pdfFile");
+    const btnOpen = document.getElementById("btnOpen");
 
-document.addEventListener("click",(e)=>{
+    if (!fileInput || !btnOpen) {
+        return;
+    }
 
-const btn=e.target.closest("#btnOpen");
+    btnOpen.addEventListener("click", () => {
+        fileInput.click();
+    });
 
-if(btn){
-
-fileInput.click();
+    fileInput.addEventListener("change", openPdf);
 
 }
 
-});
+async function openPdf(e) {
 
-fileInput.addEventListener("change",async function(){
+    const file = e.target.files[0];
 
-const file=this.files[0];
+    if (!file) return;
 
-if(!file)return;
+    try {
 
-const bytes=await file.arrayBuffer();
+        const bytes = await file.arrayBuffer();
 
-pdfDoc=await pdfjsLib.getDocument({
+        pdfDoc = await pdfjsLib.getDocument({
+            data: bytes
+        }).promise;
 
-data:bytes
+        totalPages = pdfDoc.numPages;
+        currentPage = 1;
 
-}).promise;
+        document.getElementById("pageNum").textContent = currentPage;
+        document.getElementById("pageCount").textContent = totalPages;
 
-totalPages=pdfDoc.numPages;
+        document.getElementById("emptyState").style.display = "none";
 
-currentPage=1;
+        console.log("PDF Loaded");
+        console.log(pdfDoc);
 
-document.getElementById("pageCount").innerText=totalPages;
+    } catch (err) {
 
-document.getElementById("pageNum").innerText=currentPage;
+        console.error(err);
+        alert("Gagal membuka file PDF.");
 
-document.getElementById("emptyState").style.display="none";
+    }
 
-console.log("PDF Loaded");
-
-console.log(pdfDoc);
-
-});
+}
