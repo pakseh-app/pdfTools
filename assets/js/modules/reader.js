@@ -1,32 +1,23 @@
 // ======================================
-// pdfTools Reader Module
+// pdfTools Reader Module (LEGACY)
 // ======================================
 
-import * as pdfjsLib from "../../../libs/pdfjs/pdf.mjs";
-
-pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
-    "../../../libs/pdfjs/pdf.worker.mjs",
-    import.meta.url
-).href;
+pdfjsLib.GlobalWorkerOptions.workerSrc = "libs/pdfjs/pdf.worker.min.js";
 
 let pdfDoc = null;
 let currentPage = 1;
 let totalPages = 0;
 
-export function initReader() {
+function initReader() {
 
     const fileInput = document.getElementById("pdfFile");
     const btnOpen = document.getElementById("btnOpen");
 
-    if (!fileInput || !btnOpen) {
-        return;
-    }
+    if (!fileInput || !btnOpen) return;
 
-    btnOpen.addEventListener("click", () => {
-        fileInput.click();
-    });
+    btnOpen.onclick = () => fileInput.click();
 
-    fileInput.addEventListener("change", openPdf);
+    fileInput.onchange = openPdf;
 
 }
 
@@ -53,13 +44,16 @@ async function openPdf(e) {
         document.getElementById("emptyState").style.display = "none";
 
         console.log("PDF Loaded");
-        console.log(pdfDoc);
 
     } catch (err) {
 
         console.error(err);
-        alert("Gagal membuka file PDF.");
+
+        alert("Gagal membuka PDF");
 
     }
 
 }
+
+// supaya bisa dipanggil dari router
+window.initReader = initReader;
