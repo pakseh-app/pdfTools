@@ -1,59 +1,71 @@
 // ======================================
-// pdfTools Reader Module (LEGACY)
+// pdfTools Reader
+// Legacy PDF.js
 // ======================================
 
-pdfjsLib.GlobalWorkerOptions.workerSrc = "libs/pdfjs/pdf.worker.min.js";
+pdfjsLib.GlobalWorkerOptions.workerSrc =
+"libs/pdfjs/pdf.worker.min.js";
 
-let pdfDoc = null;
-let currentPage = 1;
-let totalPages = 0;
+let pdfDoc=null;
 
-function initReader() {
+let currentPage=1;
 
-    const fileInput = document.getElementById("pdfFile");
-    const btnOpen = document.getElementById("btnOpen");
+let totalPages=0;
 
-    if (!fileInput || !btnOpen) return;
+function initReader(){
 
-    btnOpen.onclick = () => fileInput.click();
+const btn=document.getElementById("btnOpen");
 
-    fileInput.onchange = openPdf;
+const input=document.getElementById("pdfFile");
 
-}
+if(!btn || !input)return;
 
-async function openPdf(e) {
+btn.onclick=()=>{
 
-    const file = e.target.files[0];
+input.click();
 
-    if (!file) return;
+};
 
-    try {
-
-        const bytes = await file.arrayBuffer();
-
-        pdfDoc = await pdfjsLib.getDocument({
-            data: bytes
-        }).promise;
-
-        totalPages = pdfDoc.numPages;
-        currentPage = 1;
-
-        document.getElementById("pageNum").textContent = currentPage;
-        document.getElementById("pageCount").textContent = totalPages;
-
-        document.getElementById("emptyState").style.display = "none";
-
-        console.log("PDF Loaded");
-
-    } catch (err) {
-
-        console.error(err);
-
-        alert("Gagal membuka PDF");
-
-    }
+input.onchange=openPdf;
 
 }
 
-// supaya bisa dipanggil dari router
-window.initReader = initReader;
+async function openPdf(e){
+
+const file=e.target.files[0];
+
+if(!file)return;
+
+try{
+
+const bytes=await file.arrayBuffer();
+
+pdfDoc=await pdfjsLib.getDocument({
+
+data:bytes
+
+}).promise;
+
+totalPages=pdfDoc.numPages;
+
+currentPage=1;
+
+document.getElementById("pageNum").textContent=currentPage;
+
+document.getElementById("pageCount").textContent=totalPages;
+
+document.getElementById("emptyState").style.display="none";
+
+console.log("PDF Loaded");
+
+}catch(err){
+
+console.error(err);
+
+alert("Gagal membuka PDF");
+
+}
+
+}
+
+window.initReader=initReader;
