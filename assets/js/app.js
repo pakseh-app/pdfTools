@@ -1,37 +1,18 @@
-const sidebar=document.getElementById("sidebar");
+// ======================================
+// pdfTools App
+// ======================================
 
-document
-.getElementById("toggleSidebar")
-.onclick=()=>{
+// Toggle Sidebar
 
-sidebar.classList.toggle("hide");
+const sidebar = document.getElementById("sidebar");
+const toggleSidebar = document.getElementById("toggleSidebar");
 
-};
+if (toggleSidebar) {
 
-document
-.querySelectorAll(".menu")
-.forEach(menu=>{
+    toggleSidebar.addEventListener("click", () => {
 
-menu.onclick=(e)=>{
+        sidebar.classList.toggle("show");
 
-e.preventDefault();
+    });
 
-document
-.querySelectorAll(".menu")
-.forEach(x=>x.classList.remove("active"));
-
-menu.classList.add("active");
-
-const page=menu.dataset.page;
-
-document
-.getElementById("pageTitle")
-.innerText=menu.innerText.trim();
-
-loadPage(page);
-
-};
-
-});
-
-loadPage("home");
+}
