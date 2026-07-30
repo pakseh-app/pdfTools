@@ -4,7 +4,7 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>pdfTools</title>
 
@@ -18,99 +18,114 @@
 
 <body>
 
-<div class="container py-4">
+<div class="app">
 
-    <div class="header text-center mb-4">
+    <!-- Sidebar -->
+
+    <aside class="sidebar" id="sidebar">
 
         <div class="logo">
 
             <i class="fa-solid fa-file-pdf"></i>
 
+            <span>pdfTools</span>
+
         </div>
 
-        <h2>pdfTools</h2>
+        <nav>
 
-        <p>PDF Reader • Editor • Generator</p>
+            <a href="#" class="menu active" data-page="home">
 
-    </div>
+                <i class="fa-solid fa-house"></i>
 
-    <div class="row g-4">
+                <span>Beranda</span>
 
-        <div class="col-md-4">
+            </a>
 
-            <a href="pages/reader.html" class="menu-card">
+            <a href="#" class="menu" data-page="reader">
 
                 <i class="fa-solid fa-book-open-reader"></i>
 
-                <h5>Buka PDF</h5>
-
-                <small>Membaca File PDF</small>
+                <span>Buka PDF</span>
 
             </a>
 
-        </div>
-
-        <div class="col-md-4">
-
-            <a href="pages/editor.html" class="menu-card">
+            <a href="#" class="menu" data-page="editor">
 
                 <i class="fa-solid fa-pen"></i>
 
-                <h5>Edit PDF</h5>
-
-                <small>Edit Dokumen PDF</small>
+                <span>Edit PDF</span>
 
             </a>
 
-        </div>
-
-        <div class="col-md-4">
-
-            <a href="pages/templates.html" class="menu-card">
+            <a href="#" class="menu" data-page="template">
 
                 <i class="fa-solid fa-file-lines"></i>
 
-                <h5>Template</h5>
-
-                <small>CV & Lamaran Kerja</small>
+                <span>Template</span>
 
             </a>
 
-        </div>
-
-        <div class="col-md-6">
-
-            <a href="pages/documents.html" class="menu-card">
+            <a href="#" class="menu" data-page="document">
 
                 <i class="fa-solid fa-folder-open"></i>
 
-                <h5>Dokumen Saya</h5>
-
-                <small>Semua PDF</small>
+                <span>Dokumen</span>
 
             </a>
 
-        </div>
-
-        <div class="col-md-6">
-
-            <a href="pages/settings.html" class="menu-card">
+            <a href="#" class="menu" data-page="setting">
 
                 <i class="fa-solid fa-gear"></i>
 
-                <h5>Pengaturan</h5>
-
-                <small>Konfigurasi Aplikasi</small>
+                <span>Pengaturan</span>
 
             </a>
 
-        </div>
+        </nav>
 
-    </div>
+    </aside>
+
+    <!-- Main -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <button id="toggleSidebar">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </button>
+
+            <h4 id="pageTitle">Dashboard</h4>
+
+        </header>
+
+        <section id="workspace">
+
+            <div class="welcome">
+
+                <i class="fa-solid fa-file-pdf"></i>
+
+                <h2>Selamat Datang di pdfTools</h2>
+
+                <p>
+
+                    Aplikasi PDF Reader, Editor, dan Generator Dokumen.
+
+                </p>
+
+            </div>
+
+        </section>
+
+    </main>
 
 </div>
 
 <script src="assets/js/app.js"></script>
 
 </body>
+
 </html>
