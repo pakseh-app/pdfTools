@@ -15,21 +15,32 @@ const ctx = () => canvas().getContext("2d");
 
 function initReader() {
 
-    const btn = document.getElementById("btnOpen");
+    const btnOpen = document.getElementById("btnOpen");
     const input = document.getElementById("pdfFile");
 
-    if (!btn || !input) return;
+    const btnPrev = document.getElementById("btnPrev");
+    const btnNext = document.getElementById("btnNext");
 
-    btn.onclick = () => input.click();
+    const btnZoomIn = document.getElementById("btnZoomIn");
+    const btnZoomOut = document.getElementById("btnZoomOut");
 
+    if (!btnOpen || !input) return;
+
+    btnOpen.onclick = () => input.click();
     input.onchange = openPdf;
 
+    btnPrev.onclick = prevPage;
+    btnNext.onclick = nextPage;
+
+    btnZoomIn.onclick = zoomIn;
+    btnZoomOut.onclick = zoomOut;
+
+    updateZoomText();
 }
 
 async function openPdf(e) {
 
     const file = e.target.files[0];
-
     if (!file) return;
 
     try {
@@ -43,8 +54,7 @@ async function openPdf(e) {
         totalPages = pdfDoc.numPages;
         currentPage = 1;
 
-        document.getElementById("pageNum").textContent = currentPage;
-        document.getElementById("pageCount").textContent = totalPages;
+        updatePageInfo();
 
         await renderPage(currentPage);
 
@@ -58,6 +68,8 @@ async function openPdf(e) {
 }
 
 async function renderPage(pageNumber) {
+
+    if (!pdfDoc) return;
 
     const page = await pdfDoc.getPage(pageNumber);
 
@@ -74,11 +86,77 @@ async function renderPage(pageNumber) {
     pdfCanvas.style.display = "block";
 
     await page.render({
-
         canvasContext: ctx(),
         viewport
-
     }).promise;
+
+}
+
+async function nextPage() {
+
+    if (!pdfDoc) return;
+
+    if (currentPage >= totalPages) return;
+
+    currentPage++;
+
+    updatePageInfo();
+
+    await renderPage(currentPage);
+
+}
+
+async function prevPage() {
+
+    if (!pdfDoc) return;
+
+    if (currentPage <= 1) return;
+
+    currentPage--;
+
+    updatePageInfo();
+
+    await renderPage(currentPage);
+
+}
+
+async function zoomIn() {
+
+    if (!pdfDoc) return;
+
+    zoom += 0.25;
+
+    updateZoomText();
+
+    await renderPage(currentPage);
+
+}
+
+async function zoomOut() {
+
+    if (!pdfDoc) return;
+
+    if (zoom <= 0.5) return;
+
+    zoom -= 0.25;
+
+    updateZoomText();
+
+    await renderPage(currentPage);
+
+}
+
+function updatePageInfo() {
+
+    document.getElementById("pageNum").textContent = currentPage;
+    document.getElementById("pageCount").textContent = totalPages;
+
+}
+
+function updateZoomText() {
+
+    document.getElementById("zoomValue").textContent =
+        Math.round(zoom * 100) + "%";
 
 }
 
