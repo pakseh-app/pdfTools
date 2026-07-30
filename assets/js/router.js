@@ -1,78 +1,86 @@
 // ======================================
 // pdfTools Router
-// v1.2.0
 // ======================================
 
 const workspace = document.getElementById("workspace");
 const pageTitle = document.getElementById("pageTitle");
 
-const pageTitles = {
+const titles = {
+
     home: "Dashboard",
+
     reader: "PDF Reader",
+
     editor: "PDF Editor",
+
     templates: "Template",
+
     documents: "Dokumen",
+
     settings: "Pengaturan"
+
 };
 
-async function loadPage(page) {
+async function loadPage(page){
 
-    try {
+    try{
 
-        const response = await fetch(`views/${page}.html`);
+        const res = await fetch(`views/${page}.html`);
 
-        if (!response.ok) {
-            throw new Error("Halaman tidak ditemukan");
-        }
+        workspace.innerHTML = await res.text();
 
-        workspace.innerHTML = await response.text();
+        pageTitle.textContent = titles[page] || "pdfTools";
 
-        pageTitle.textContent = pageTitles[page] || "pdfTools";
+        document.querySelectorAll(".menu").forEach(m=>{
 
-        document.querySelectorAll(".menu").forEach(menu => {
-            menu.classList.remove("active");
+            m.classList.remove("active");
+
         });
 
         document
-            .querySelector(`[data-page="${page}"]`)
-            ?.classList.add("active");
+        .querySelector(`[data-page="${page}"]`)
+        ?.classList.add("active");
 
-        // Jalankan module reader hanya saat halaman reader dibuka
-        if (page === "reader") {
+        if(page==="reader"){
 
-            const reader = await import("./modules/reader.js");
+            if(typeof initReader==="function"){
 
-            if (reader.initReader) {
-                reader.initReader();
+                initReader();
+
             }
 
         }
 
-    } catch (err) {
+    }catch(e){
 
-        console.error(err);
+        console.error(e);
 
-        workspace.innerHTML = `
-            <div class="text-center p-5">
-                <h3>Halaman tidak ditemukan</h3>
-            </div>
+        workspace.innerHTML=`
+
+        <div class="text-center p-5">
+
+            <h2>Halaman tidak ditemukan</h2>
+
+        </div>
+
         `;
 
     }
 
 }
 
-document.querySelectorAll(".menu").forEach(menu => {
+document.querySelectorAll(".menu").forEach(menu=>{
 
-    menu.addEventListener("click", e => {
+    menu.onclick=(e)=>{
 
         e.preventDefault();
 
         loadPage(menu.dataset.page);
 
-    });
+    };
 
 });
 
-loadPage("home");
+window.loadPage=loadPage;
 
+loadPage("home");
