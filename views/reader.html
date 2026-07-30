@@ -1,83 +1,66 @@
 <div class="reader-page">
 
     <!-- Toolbar -->
-
     <div class="reader-toolbar">
 
         <button class="tool-btn" id="btnOpen">
-
             <i class="fa-solid fa-folder-open"></i>
-
             Buka PDF
-
         </button>
 
         <button class="tool-btn" id="btnPrev">
-
             <i class="fa-solid fa-chevron-left"></i>
-
         </button>
 
         <span class="page-info">
-
             <span id="pageNum">0</span>
-
             /
-
             <span id="pageCount">0</span>
-
         </span>
 
         <button class="tool-btn" id="btnNext">
-
             <i class="fa-solid fa-chevron-right"></i>
-
         </button>
 
         <div class="toolbar-divider"></div>
 
         <button class="tool-btn" id="btnZoomOut">
-
             <i class="fa-solid fa-magnifying-glass-minus"></i>
-
         </button>
 
-        <span id="zoomValue">
-
-            100%
-
-        </span>
+        <span id="zoomValue">100%</span>
 
         <button class="tool-btn" id="btnZoomIn">
-
             <i class="fa-solid fa-magnifying-glass-plus"></i>
-
         </button>
 
     </div>
 
-    <!-- Area PDF -->
-
+    <!-- Area Reader -->
     <div class="reader-body">
 
-        <div id="pdfContainer">
+        <!-- Panel Thumbnail -->
+        <aside class="thumbnail-panel">
 
-            <canvas id="pdfCanvas"></canvas>
+            <div id="thumbnailList"></div>
+
+        </aside>
+
+        <!-- Panel PDF -->
+        <div class="pdf-view">
+
+            <div id="pdfContainer"></div>
 
             <div id="emptyState">
 
-                <i class="fa-solid fa-file-pdf"></i>
+                <i class="fa-solid fa-file-pdf fa-4x mb-3"></i>
 
                 <h3>Belum Ada File PDF</h3>
 
                 <p>
-
                     Tekan tombol
-
-                    <b>Buka PDF</b>
-
+                    <strong>Buka PDF</strong>
                     untuk memilih file.
-
                 </p>
 
             </div>
@@ -89,7 +72,7 @@
 </div>
 
 <input
-type="file"
-id="pdfFile"
-accept="application/pdf"
-hidden>
+    type="file"
+    id="pdfFile"
+    accept="application/pdf"
+    hidden>
