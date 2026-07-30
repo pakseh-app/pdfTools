@@ -3,8 +3,7 @@
 // v1.2.0
 // ================================
 
-pdfjsLib.GlobalWorkerOptions.workerSrc =
-"libs/pdfjs/pdf.worker.min.js";
+
 
 let pdfDoc = null;
 
