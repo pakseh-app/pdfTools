@@ -1,13 +1,70 @@
-<div class="page">
+<div class="reader-page">
 
-<h2>📖 PDF Reader</h2>
+    <div class="reader-toolbar">
 
-<hr>
+        <button class="tool-btn" id="btnOpen">
+            <i class="fa-solid fa-folder-open"></i>
+            Buka PDF
+        </button>
 
-<p>
+        <button class="tool-btn">
+            <i class="fa-solid fa-magnifying-glass-minus"></i>
+        </button>
 
-Disini nanti kita akan membuka dan membaca PDF.
+        <span id="zoomValue">100%</span>
 
-</p>
+        <button class="tool-btn">
+            <i class="fa-solid fa-magnifying-glass-plus"></i>
+        </button>
+
+        <div class="toolbar-divider"></div>
+
+        <button class="tool-btn">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <span>
+
+            Halaman
+
+            <strong>1</strong>
+
+            /
+
+            <strong>1</strong>
+
+        </span>
+
+        <button class="tool-btn">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+
+    </div>
+
+    <div class="reader-body">
+
+        <div class="pdf-canvas">
+
+            <i class="fa-solid fa-file-pdf"></i>
+
+            <h3>Belum ada file PDF</h3>
+
+            <p>
+
+                Klik tombol <b>Buka PDF</b>
+
+            </p>
+
+        </div>
+
+    </div>
 
 </div>
+
+<input type="file"
+
+id="pdfFile"
+
+accept=".pdf"
+
+hidden>
