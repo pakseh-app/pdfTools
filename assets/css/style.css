@@ -1,0 +1,87 @@
+body{
+
+    background:#edf2f7;
+
+    font-family:Segoe UI,Arial,sans-serif;
+
+}
+
+.header{
+
+    margin-top:20px;
+
+}
+
+.logo{
+
+    width:90px;
+
+    height:90px;
+
+    background:#d32f2f;
+
+    color:#fff;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:40px;
+
+    margin:auto;
+
+    margin-bottom:15px;
+
+}
+
+.menu-card{
+
+    display:block;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:35px 20px;
+
+    text-align:center;
+
+    text-decoration:none;
+
+    color:#333;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.08);
+
+    transition:.25s;
+
+}
+
+.menu-card:hover{
+
+    transform:translateY(-6px);
+
+    color:#d32f2f;
+
+}
+
+.menu-card i{
+
+    font-size:45px;
+
+    margin-bottom:15px;
+
+    color:#d32f2f;
+
+}
+
+.menu-card h5{
+
+    margin-top:10px;
+
+    font-weight:700;
+
+}
